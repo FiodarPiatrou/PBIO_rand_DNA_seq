@@ -77,16 +77,17 @@ def main():
     if not seq_id:
         print("Błąd: ID sekwencji nie może być puste")
         return
-
+    #Pobieranie opisu sekwencji
     description = input("Podaj opis sekwencji: ").strip()
+    #Pobieranie imienia
     name = input("Podaj imię: ").strip()
 
-    # Generuj sekwencję
+
     #ORIGINAL:
     #sequence = generate_dna_sequence(length, name)
     #stats = calculate_statistics(sequence, name)
     #MODIFIED(musimy pobrać oba argumenty naraz)
-    # Generuj sekwencję
+    # Generujemy sekwencję i zapisujemy pozycje wstawienia imienia
     sequence, insert_pos = generate_dna_sequence(length, name)
     # Obliczenie statystyki
     stats = calculate_statistics(sequence, name, insert_pos)
@@ -96,7 +97,7 @@ def main():
     with open(filename, 'w') as f:
         f.write(f">{seq_id} {description}\n")
         f.write(sequence + "\n")
-
+    #Wyświetlamy na knosoli komunikat że sekwencja została zapisana do pliku oraz statystyki
     print(f"\nSekwencja została zapisana do pliku {filename}")
     print("Statystyki sekwencji:")
     print(f"A: {stats['A']:.1f}%")
@@ -105,6 +106,6 @@ def main():
     print(f"T: {stats['T']:.1f}%")
     print(f"%CG: {stats['CG_ratio']:.1f}")
 
-
+# uruchomienie funkcji main
 if __name__ == "__main__":
     main()
